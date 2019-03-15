@@ -11,7 +11,7 @@ Set the following environment variables:
 Start the server:
 ```bash
 export RAML_API_FILE=[LOCATION OF YOUR RAML FILE]
-npm run
+npm start
 ```
 
 Check that the control port is reachable:
