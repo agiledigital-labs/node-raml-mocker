@@ -1,0 +1,82 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    source.path: "."
+    project.artefact: "true"
+    environment: "${ENVIRONMENT}"
+  name: ${NAME}
+spec:
+  type: LoadBalancer
+  selector:
+    component: mock
+  ports:
+    - name: "port-5001"
+      port: 5001
+      targetPort: 5001
+      protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    source.path: "."
+    project.artefact: "true"
+    environment: "${ENVIRONMENT}"
+  name: ${NAME}
+  labels:
+    app: ${NAME}
+spec:
+  replicas: 1
+  progressDeadlineSeconds: 300
+  selector:
+    matchLabels:
+      app: ${NAME}
+  template:
+    metadata:
+      labels:
+        app: ${NAME}
+        component: mock
+    spec:
+      securityContext:
+        runAsUser: 10000
+        runAsGroup: 0
+        fsGroup: 0
+      initContainers:
+        - image: "fetchers/s3-artifact-fetcher"
+          name: s3-artifact-fetcher
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: SOURCE_URL
+              value: "${DESTINATION}"
+            # #Uncomment for local development
+            # - name: AWS_ACCESS_KEY_ID
+            #   value: "${AWS_ACCESS_KEY_ID}"
+            # - name: AWS_SECRET_ACCESS_KEY
+            #   value: "${AWS_SECRET_ACCESS_KEY}"
+          volumeMounts:
+            - name: artifacts
+              mountPath: /home/runner/artifacts
+
+      containers:
+        - image: "runners/node-mock-runner"
+          name: ${NAME}
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: ENVIRONMENT
+              value: "${ENVIRONMENT}"
+          ports:
+            - containerPort: 5001
+          # command: ["/bin/bash"]
+          # args: ["-c", "sleep 100000"]
+          volumeMounts:
+            - name: artifacts
+              mountPath: /home/runner/artifacts
+          resources:
+            limits:
+              memory: 512Mi
+            requests:
+              memory: 256Mi
+      volumes:
+        - name: artifacts
+          emptyDir: {}
