@@ -1,4 +1,9 @@
 #!/bin/bash
+#
+# Packages RAML and (optionally) transformers in the package format
+# expected by the node-raml-mocker.
+# The file written by this script can be uploaded by the upload-artifact-local.sh
+# script.
 
 # Use the Unofficial Bash Strict Mode (Unless You Looove Debugging)
 # http://redsymbol.net/articles/unofficial-bash-strict-mode/
