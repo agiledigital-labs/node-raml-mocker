@@ -61,10 +61,10 @@ trap 'rm -rf "$TMPDIR"' EXIT
 
 mkdir "${TMPDIR}/api"
 mkdir "${TMPDIR}/transformers"
-cp -r "${RAML}/*" "${TMPDIR}/api"
+cp -r "${RAML}"/* "${TMPDIR}/api"
 
 if [ ! -z "$TRANSFORMERS_DIR" ]; then
-  cp -r "${TRANSFORMERS_DIR}/*" "${TMPDIR}/transformers"
+  cp -r "${TRANSFORMERS_DIR}"/* "${TMPDIR}/transformers"
 fi  
 
 tar -czvf "${OUTPUT}" -C "${TMPDIR}" .
