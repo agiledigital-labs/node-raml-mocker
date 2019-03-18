@@ -63,7 +63,7 @@ function upload_archive() {
      fail "package does not exist at [${PACKAGE_PATH}]"
   fi
 
-  DESTINATION="s3://platform-aws-${STAGE}-artifacts/${NAME//_/-}/mock/release-${STAGE}-local"
+  DESTINATION="s3://platform-aws-base-${STAGE}-artifacts/${NAME//_/-}/mock/release-${STAGE}-local"
 
   aws s3 cp "${PACKAGE_PATH}" "${DESTINATION}/"
 

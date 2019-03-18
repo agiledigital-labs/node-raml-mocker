@@ -2,8 +2,6 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    source.path: "."
-    project.artefact: "true"
     environment: "${ENVIRONMENT}"
   name: ${NAME}
 spec:
@@ -11,7 +9,7 @@ spec:
   selector:
     component: mock
   ports:
-    - name: "port-5001"
+    - name: "http"
       port: 5001
       targetPort: 5001
       protocol: TCP
@@ -20,8 +18,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    source.path: "."
-    project.artefact: "true"
     environment: "${ENVIRONMENT}"
   name: ${NAME}
   labels:
@@ -43,13 +39,13 @@ spec:
         runAsGroup: 0
         fsGroup: 0
       initContainers:
-        - image: "fetchers/s3-artifact-fetcher"
+        - image: "${AWS_ACCOUNT}.dkr.ecr.ap-southeast-2.amazonaws.com/fetchers/s3-artifact-fetcher"
           name: s3-artifact-fetcher
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           env:
             - name: SOURCE_URL
               value: "${DESTINATION}"
-            # #Uncomment for local development
+            #Uncomment for local development
             # - name: AWS_ACCESS_KEY_ID
             #   value: "${AWS_ACCESS_KEY_ID}"
             # - name: AWS_SECRET_ACCESS_KEY
@@ -57,18 +53,15 @@ spec:
           volumeMounts:
             - name: artifacts
               mountPath: /home/runner/artifacts
-
       containers:
-        - image: "runners/node-mock-runner"
+        - image: "${AWS_ACCOUNT}.dkr.ecr.ap-southeast-2.amazonaws.com/runners/node-mock-runner"
           name: ${NAME}
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           env:
             - name: ENVIRONMENT
               value: "${ENVIRONMENT}"
           ports:
             - containerPort: 5001
-          # command: ["/bin/bash"]
-          # args: ["-c", "sleep 100000"]
           volumeMounts:
             - name: artifacts
               mountPath: /home/runner/artifacts

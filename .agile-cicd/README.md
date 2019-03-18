@@ -2,7 +2,7 @@
 
 ## Package the RAML and transformers
 ```bash
-.agile-cicd/generate-mock.sh /tmp/system-master-index-mock.tar.gz  ~/service-layer/raml-system-master-index ~/dev/agile/node-raml-mocker/app/samples/transformers
+.agile-cicd/package-mock.sh /tmp/system-master-index-mock.tar.gz  ~/service-layer/raml-system-master-index ~/dev/agile/node-raml-mocker/app/samples/transformers
 ```
 
 ## Create the deployment

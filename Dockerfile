@@ -5,7 +5,7 @@ LABEL description="Docker image that supports a customisable, RAML mock"
 LABEL vendor="Agile Digital" 
 LABEL version="0.1"
 
-RUN apk update && apk add git && rm -rf /var/cache/apk/
+RUN apk add git=2.13.7-r2 --no-cache
 
 ENV HOME /home/runner
 ENV RUNNER_USER runner

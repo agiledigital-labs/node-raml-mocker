@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# Use the Unofficial Bash Strict Mode (Unless You Looove Debugging)
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
+
 # Ensure that assigned uid has entry in /etc/passwd.
 if [ `id -u` -ge 10000 ]; then
     echo "Patching /etc/passwd to make ${RUNNER_USER} -> builder and `id -u` -> ${RUNNER_USER}"

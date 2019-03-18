@@ -59,12 +59,12 @@ TMPDIR=$(mktemp -d)
 trap "exit 1"         HUP INT PIPE QUIT TERM
 trap 'rm -rf "$TMPDIR"' EXIT
 
-mkdir ${TMPDIR}/api
-mkdir ${TMPDIR}/transformers
-cp -r ${RAML}/* ${TMPDIR}/api
+mkdir "${TMPDIR}/api"
+mkdir "${TMPDIR}/transformers"
+cp -r "${RAML}/*" "${TMPDIR}/api"
 
 if [ ! -z "$TRANSFORMERS_DIR" ]; then
-  cp -r ${TRANSFORMERS_DIR}/* ${TMPDIR}/transformers
+  cp -r "${TRANSFORMERS_DIR}/*" "${TMPDIR}/transformers"
 fi  
 
-tar -czvf ${OUTPUT} -C ${TMPDIR} .
+tar -czvf "${OUTPUT}" -C "${TMPDIR}" .
