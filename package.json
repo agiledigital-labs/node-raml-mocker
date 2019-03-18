@@ -2,9 +2,8 @@
   "name": "node-raml-mock",
   "version": "1.0.0",
   "description": "RAML-first mocking tool",
-  "main": "mock-server.js",
+  "main": "app/mock-server.js",
   "directories": {
-    "test": "tests"
   },
   "dependencies": {
     "body-parser": "^1.18.3",

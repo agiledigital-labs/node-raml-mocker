@@ -11,7 +11,7 @@ Set the following environment variables:
 Start the server:
 ```bash
 export RAML_API_FILE=[LOCATION OF YOUR RAML FILE]
-npm run
+npm start
 ```
 
 Check that the control port is reachable:
@@ -64,3 +64,8 @@ curl --header "Content-Type: application/json" \
 
 ## Transformers
 Transformers are `(body, req, res) => body | null`. if a transformer returns `null`, then the original body will be used by the response interceptor. It is possible for a transformer to modify the status and headers of the response using the `res` parameter.
+
+## Deploying
+[Deploying|./.agile-cicd/README.md] to a cluster is achieved by:
+1. packaging the RAML and transformers in a `.tar.gz` and publishing to S3; and,
+2. deploying a mock-runner container and s3-artifact-fetch init container.

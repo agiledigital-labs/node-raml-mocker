@@ -34,6 +34,8 @@ exports.ramlmocker = async (port, ramlFile, transformers) => {
 
         const matchesPath = transformer => !transformer.path || transformer.path === request.route.path;
 
+        console.log(request.route.path);
+
         const reducer = (body, transformer) => transformer.transform(body, request, response) || body
 
         return responseTransformers.filter(matchesPath).reduce(reducer, chunk);    
