@@ -12,12 +12,11 @@ set -euo pipefail
 set -x
 IFS=$'\n\t'
 
-usage() { 
-    echo "Usage: $0 NAME PACKAGE_PATH" 1>&2; exit 1; 
+usage() {
+    echo "Usage: $0 NAME PACKAGE_PATH" 1>&2; exit 1;
 }
 
 SCRIPT_LOCATION="${BASH_SOURCE%/*}"
-PROJECT_DIR="${SCRIPT_LOCATION}/.."
 
 NAME=${1:-}
 if [ -z "$NAME" ]; then
@@ -80,7 +79,7 @@ function template_k8_deployment() {
   export ENVIRONMENT
   export BUILD_NUMBER
   export NAME
-  
+
   rm -f "${SCRIPT_LOCATION}/deploy.yml"
   envsubst < "${SCRIPT_LOCATION}/deploy.template.yml" > "${SCRIPT_LOCATION}/deploy.yml"
 }
@@ -91,7 +90,7 @@ function apply_k8_deployment() {
   info "applying deployment"
   kubectl apply -n "csc-${STAGE}" -f "${SCRIPT_LOCATION}/deploy.yml"
   info "checking status"
-  kubectl rollout -n "csc-${STAGE}" status deploy system-master-index-mock
+  kubectl rollout -n "csc-${STAGE}" status deploy "${NAME}"
 }
 
 get_stage

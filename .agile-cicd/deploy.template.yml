@@ -60,11 +60,29 @@ spec:
           env:
             - name: ENVIRONMENT
               value: "${ENVIRONMENT}"
+            - name: TLS_PUBLIC_CERTIFICATE_PATH
+              value: /home/runner/certs/platform-aws-service.cert.pem
+            - name: TLS_PRIVATE_KEY_PATH
+              value: /home/runner/certs/platform-aws-service.privkey.pem
+            - name: TLS_CA_CERTIFICATE_PATH
+              value: /home/runner/certs/platform-aws-rootCA.cert.pem
           ports:
             - containerPort: 5001
           volumeMounts:
             - name: artifacts
               mountPath: /home/runner/artifacts
+            - name: tls-certificate
+              mountPath: /home/runner/certs/platform-aws-service.cert.pem
+              subPath: platform-aws-service.cert.pem
+              readOnly: true
+            - name: tls-root-cert
+              mountPath: /home/runner/certs/platform-aws-rootCA.cert.pem
+              subPath: platform-aws-rootCA.cert.pem
+              readOnly: true
+            - name: tls-private-key
+              mountPath: /home/runner/certs/platform-aws-service.privkey.pem
+              subPath: platform-aws-service.privkey.pem
+              readOnly: true
           resources:
             limits:
               memory: 512Mi
@@ -73,3 +91,12 @@ spec:
       volumes:
         - name: artifacts
           emptyDir: {}
+        - name: tls-certificate
+          secret:
+            secretName: tls-certificate
+        - name: tls-root-cert
+          secret:
+            secretName: tls-root-cert
+        - name: tls-private-key
+          secret:
+            secretName: tls-private-key

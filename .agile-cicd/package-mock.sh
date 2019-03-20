@@ -10,8 +10,10 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-usage() { 
-    echo "Usage: $0 OUTPUT RAML_DIR [TRANFORMERS_DIR]" 1>&2; exit 1; 
+set -x
+
+usage() {
+    echo "Usage: $0 OUTPUT RAML_DIR [TRANFORMERS_DIR]" 1>&2; exit 1;
 }
 
 OUTPUT=${1:-}
@@ -20,8 +22,8 @@ if [ -z "$OUTPUT" ]; then
 fi
 
 if [[ -e "${OUTPUT}" ]]; then
-    usage
     echo "Output [${OUTPUT}] exists."
+    usage
     exit 1
 fi
 
@@ -32,14 +34,14 @@ if [ -z "$RAML" ]; then
 fi
 
 if [[ ! -d ${RAML} ]]; then
-    usage
     echo "RAML directory [${RAML}] does not exist!"
+    usage
     exit 1
 fi
 
 if [[ ! -f ${RAML}/api.raml ]]; then
-    usage
     echo "RAML api.raml [${RAML}/api.raml] does not exist!"
+    usage
     exit 1
 fi
 
@@ -47,11 +49,11 @@ TRANSFORMERS_DIR=${3:-}
 
 if [ ! -z "$TRANSFORMERS_DIR" ]; then
   if [[ ! -d ${TRANSFORMERS_DIR} ]]; then
-    usage
     echo "Transformers directory [${TRANSFORMERS_DIR}] does not exist!"
+    usage
     exit 1
   fi
-fi  
+fi
 
 TMPDIR=$(mktemp -d)
 
@@ -65,6 +67,6 @@ cp -r "${RAML}"/* "${TMPDIR}/api"
 
 if [ ! -z "$TRANSFORMERS_DIR" ]; then
   cp -r "${TRANSFORMERS_DIR}"/* "${TMPDIR}/transformers"
-fi  
+fi
 
 tar -czvf "${OUTPUT}" -C "${TMPDIR}" .

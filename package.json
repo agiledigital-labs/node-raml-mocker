@@ -2,9 +2,8 @@
   "name": "node-raml-mock",
   "version": "1.0.0",
   "description": "RAML-first mocking tool",
-  "main": "app/mock-server.js",
-  "directories": {
-  },
+  "main": "app/server.js",
+  "directories": {},
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "~4.16.4",
@@ -22,6 +21,7 @@
     "request-promise-native": "^1.0.5"
   },
   "scripts": {
+    "start": "node app/server.js",
     "test": "mocha"
   },
   "author": "dxspasojevic",
