@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const uuidv4 = require('uuid/v4');
+const { startApp } = require('./start-app');
 
 exports.control = async (port, config) => {
 
@@ -33,7 +34,7 @@ exports.control = async (port, config) => {
     });
 
     return new Promise((resolve, reject) => {
-        const server = app.listen(port, () => {
+        startApp(port, app, (server) => {
             console.log(`api mock server running on [${port}].`)
             resolve(server);
         })

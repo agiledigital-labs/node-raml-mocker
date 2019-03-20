@@ -4,6 +4,7 @@ const mockService = require('osprey-mock-service');
 const osprey = require('osprey');
 const parser = require('raml-1-parser');
 const uuidv4 = require('uuid/v4');
+const { startApp } = require('./start-app');
 
 exports.ramlmocker = async (port, ramlFile, transformers) => {
 
@@ -52,8 +53,10 @@ exports.ramlmocker = async (port, ramlFile, transformers) => {
     app.use(osprey.server(raml));
     app.use(mockService(raml));
 
+
+
     return new Promise((resolve, reject) => {
-        const server = app.listen(port, () => {
+        startApp(port, app, () => {
             console.log(`RAML mock server running on [${port}].`);
             resolve({
                 remove,
