@@ -1,8 +1,8 @@
 FROM node:8.11.1-alpine
 
 LABEL maintainer="Agile Digital <info@agiledigital.com.au>"
-LABEL description="Docker image that supports a customisable, RAML mock" 
-LABEL vendor="Agile Digital" 
+LABEL description="Docker image that supports a customisable, RAML mock"
+LABEL vendor="Agile Digital"
 LABEL version="0.1"
 
 RUN apk add git=2.13.7-r2 --no-cache
