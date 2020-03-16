@@ -8,7 +8,7 @@
     "body-parser": "^1.18.3",
     "express": "~4.16.4",
     "express-mung": "^0.5.1",
-    "osprey": "^0.5.1",
+    "osprey": "^0.5.4",
     "osprey-mock-service": "^0.4.1",
     "require-all": "^3.0.0",
     "uuid": "^3.3.2"
