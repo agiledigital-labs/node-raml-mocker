@@ -1,11 +1,11 @@
-FROM node:8.11.1-alpine
+FROM node:12
 
 LABEL maintainer="Agile Digital <info@agiledigital.com.au>"
 LABEL description="Docker image that supports a customisable, RAML mock"
 LABEL vendor="Agile Digital"
 LABEL version="0.1"
 
-RUN apk add git=2.13.7-r2 --no-cache
+# RUN apk add git=2.24.1-r0 --no-cache
 
 ENV HOME /home/runner
 ENV RUNNER_USER runner
@@ -18,7 +18,7 @@ RUN adduser -S -u 10000 -h $HOME runner
 COPY package.json /home/runner/
 COPY package-lock.json /home/runner
 WORKDIR /home/runner
-RUN npm install
+RUN node -v && npm install
 COPY app/* /home/runner/app/
 
 COPY docker/run.sh /home/runner/app/run.sh
