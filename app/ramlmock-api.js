@@ -47,12 +47,10 @@ exports.ramlmocker = async (port, ramlFile, transformers) => {
       return responseTransformers.filter(matchesPath).reduce(reducer, chunk);
     })
   );
-  console.log(6);
 
   const ramlApi = await parser.loadRAML(ramlFile, {
     rejectOnErrors: true
   });
-  console.log(7, ramlApi);
 
   var raml = ramlApi.expand(true).toJSON({
     serializeMetadata: false
