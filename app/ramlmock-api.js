@@ -50,7 +50,7 @@ exports.ramlmocker = async (port, ramlFile, transformers) => {
         serializeMetadata: false
     });
 
-    app.use(osprey.server(raml, { RAMLVersion: 'RAML10' }));
+    app.use(osprey.server(raml, { RAMLVersion: undefined }));
     app.use(mockService(raml));
 
 
