@@ -1,8 +1,7 @@
 # package directories
 node_modules
 
-# templated files
-.agile-cicd/deploy.yml
+dist
 
 # direnv
 .envrc

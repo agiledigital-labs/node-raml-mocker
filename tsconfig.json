@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmit": false,
+    "allowJs": true,
+    "outDir": "dist",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "types": [
+      "node"
+    ],
+    "lib": [
+      "es6"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "node_modules/*",
+        "app/types/*"
+      ]
+    }
+  },
+  "include": [
+    "app",
+  ]
+}

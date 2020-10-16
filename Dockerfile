@@ -1,11 +1,9 @@
-FROM node:12
+FROM node:12 As Builder
 
 LABEL maintainer="Agile Digital <info@agiledigital.com.au>"
 LABEL description="Docker image that supports a customisable, RAML mock"
 LABEL vendor="Agile Digital"
 LABEL version="0.1"
-
-# RUN apk add git=2.24.1-r0 --no-cache
 
 ENV HOME /home/runner
 ENV RUNNER_USER runner
@@ -16,16 +14,35 @@ RUN adduser -S -u 10000 -h $HOME runner
 # Openshift leaves the group as root. Exploit this to ensure we can always write to them
 # Ensure we are in the the passwd file
 COPY package.json /home/runner/
-COPY package-lock.json /home/runner
+COPY yarn.lock /home/runner
+COPY tsconfig.json /home/runner
 WORKDIR /home/runner
-RUN node -v && npm install
-COPY app/* /home/runner/app/
+RUN node -v && yarn install --frozen-lockfile 
+COPY app/ /home/runner/app/
 
-COPY docker/run.sh /home/runner/app/run.sh
+RUN yarn build
 
-RUN chmod +x /home/runner/app/run.sh
+FROM node:12-alpine
 
-RUN chmod g+w /etc/passwd
+ENV HOME /home/runner
+ENV RUNNER_USER runner
+
+RUN adduser -S -u 10000 -h $HOME runner
+
+WORKDIR /home/runner
+
+COPY --from=builder /home/runner/dist/ ./dist
+
+COPY package.json /home/runner/
+COPY yarn.lock /home/runner
+
+RUN node -v && yarn install --frozen-lockfile --prod
+
+COPY docker/run.sh /home/runner/run.sh
+
+
+RUN chmod +x /home/runner/run.sh
+
 RUN chgrp -Rf root /home/runner && chmod -Rf g+w /home/runner
 
 ENV RAML_API_FILE=/home/runner/artifacts/api/api.raml
@@ -36,4 +53,4 @@ EXPOSE 5002
 
 USER runner
 
-ENTRYPOINT [ "/home/runner/app/run.sh" ]
+ENTRYPOINT [ "/home/runner/run.sh" ]
