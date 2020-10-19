@@ -39,7 +39,7 @@ const mockRaml = async () => {
     []
   );
 
-  const mocks = await ramlmocker(mockPort, ramlFile, transformers).catch((e) =>
+  const mocks = await ramlmocker(mockPort, ramlFile, transformers).catch((e: unknown) =>
     console.error(`Error generating mocks: ${e}`)
   );
 
