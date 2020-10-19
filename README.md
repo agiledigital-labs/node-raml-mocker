@@ -1,5 +1,7 @@
 # RAML first mock server
 
+[![Type Coverage](https://img.shields.io/badge/dynamic/json.svg?label=type-coverage&prefix=%E2%89%A5&suffix=%&query=$.typeCoverage.atLeast&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fagiledigital-labs%2Fnode-raml-mocker%2Fmaster%2Fpackage.json)](https://github.com/plantain-00/type-coverage)
+
 ## Running
 
 Set the following environment variables:
