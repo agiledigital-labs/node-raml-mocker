@@ -8,11 +8,6 @@ LABEL version="0.1"
 ENV HOME /home/runner
 ENV RUNNER_USER runner
 
-RUN adduser -S -u 10000 -h $HOME runner
-
-# We need to support Openshift's random userid's
-# Openshift leaves the group as root. Exploit this to ensure we can always write to them
-# Ensure we are in the the passwd file
 COPY package.json /home/runner/
 COPY yarn.lock /home/runner
 COPY tsconfig.json /home/runner
