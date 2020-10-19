@@ -41,7 +41,7 @@
     "detail": true
   },
   "author": "dxspasojevic",
-  "license": "ISC",
+  "license": "GNU",
   "release": {
     "branches": ["master"],
     "plugins": [
