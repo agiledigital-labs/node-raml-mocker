@@ -214,4 +214,8 @@ To enable TLS/HTTPS, specify the following environment variables:
 - TLS_PRIVATE_KEY_PATH
 - TLS_CA_CERTIFICATE_PATH
 
+## Contributing
 
+PR are welcome,
+
+We are using the semantic-release package so please follow this commit messaging format [commit-message-format](https://github.com/semantic-release/semantic-release#commit-message-format)
