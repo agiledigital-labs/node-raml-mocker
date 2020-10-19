@@ -43,7 +43,7 @@
   "author": "dxspasojevic",
   "license": "ISC",
   "release": {
-    "branches": ["master", "chore/add-ci"],
+    "branches": ["master"],
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/git",
