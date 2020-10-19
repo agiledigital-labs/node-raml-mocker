@@ -33,7 +33,8 @@
   "scripts": {
     "start": "ts-node app/server.ts",
     "build": "tsc",
-    "test": "mocha"
+    "test": "mocha",
+    "type-coverage": "type-coverage"
   },
   "typeCoverage": {
     "atLeast": 88.23,
