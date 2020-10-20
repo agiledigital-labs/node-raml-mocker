@@ -9,7 +9,7 @@
     "express": "~4.16.4",
     "express-mung": "^0.5.1",
     "osprey": "^0.5.4",
-    "osprey-mock-service": "^0.4.1",
+    "osprey-mock-service": "^1.0.0",
     "require-all": "^3.0.0",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.3",
