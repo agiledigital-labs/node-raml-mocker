@@ -6,7 +6,7 @@
   "directories": {},
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "~4.16.4",
+    "express": "~4.17.1",
     "express-mung": "^0.5.1",
     "osprey": "^0.5.4",
     "osprey-mock-service": "^0.4.1",
