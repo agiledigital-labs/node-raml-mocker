@@ -2,10 +2,20 @@ import express, { Request, Response } from "express";
 import { write } from "express-mung";
 import osprey from "osprey";
 import mockService from "osprey-mock-service";
-import { loadRAML } from "raml-1-parser";
 import { v4 as uuidv4 } from "uuid";
 import { startApp } from "./start-app";
 import { MocksType, Transformer } from "./types";
+import fs from "fs";
+import { WebApiParser } from "webapi-parser";
+
+async function createModel(ramlFile: string) {
+  const ramlString = fs.readFileSync(ramlFile).toString();
+  const createdModel10 = await WebApiParser.raml10
+    .parse(ramlString)
+    .catch((e: unknown) => console.error(`Error generating mocks: ${e}`));
+
+  return createdModel10;
+}
 
 export const ramlmocker = async (
   port: number,
@@ -64,14 +74,9 @@ export const ramlmocker = async (
     )
   );
 
-  const ramlApi = await loadRAML(ramlFile, [], {
-    rejectOnErrors: true,
-  });
-
-  // @ts-ignore
-  const raml = ramlApi.expand(true).toJSON({
-    serializeMetadata: false,
-  });
+  const raml = await createModel(ramlFile).catch((e: unknown) =>
+    console.error(`Error generating mocks: ${e}`)
+  );
 
   app.use(osprey.server(raml, { RAMLVersion: undefined }));
   app.use(mockService(raml));
