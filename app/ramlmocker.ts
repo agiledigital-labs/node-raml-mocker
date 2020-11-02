@@ -81,7 +81,7 @@ export const ramlmocker = async (
   app.use(osprey.server(raml, { RAMLVersion: undefined }));
   app.use(mockService(raml));
 
-  return new Promise((resolve) => {
+  return new Promise((resolve, _reject) => {
     startApp(port, app, () => {
       console.log(`RAML mock server running on [${port}].`);
       resolve({

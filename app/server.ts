@@ -48,7 +48,9 @@ export const mockRaml = async () => {
     return;
   }
 
-  await control(controlPort, mocks);
+  await control(controlPort, mocks).catch((e: unknown) =>
+    console.error(`Error generating mocks: ${e}`)
+  );
 
   console.log("Configured transformers:");
   if (mocks.list().length === 0) {
@@ -63,4 +65,4 @@ export const mockRaml = async () => {
     );
 };
 
-mockRaml();
+mockRaml().catch((e: unknown) => console.error(`Error generating mocks: ${e}`));
