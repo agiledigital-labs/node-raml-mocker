@@ -12,7 +12,7 @@
     "osprey-mock-service": "^0.4.1",
     "require-all": "^3.0.0",
     "ts-node": "^9.0.0",
-    "typescript": "^4.0.3",
+    "typescript": "^4.0.5",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
