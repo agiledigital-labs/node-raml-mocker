@@ -1,13 +1,13 @@
 #%RAML 1.0
-title: Hello world # required title
+title: Hello world
 
-/helloworld: # optional resource
-  get: # HTTP method declaration
-    responses: # declare a response
-      200: # HTTP status code
-        body: # declare content of response
-          application/json: # media type
-            type: | # structural definition of a response (schema or type)
+/helloworld:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: | 
               {
                 "title": "Hello world Response",
                 "type": "object",
@@ -24,7 +24,7 @@ title: Hello world # required title
   post:
     body:
       application/json:
-        type: | # structural definition of a response (schema or type)
+        type: | 
           {
             "title": "Hello world post",
             "type": "object",
@@ -34,15 +34,15 @@ title: Hello world # required title
               }
             }
           }
-        example: | # example of how a response looks
+        example: | 
           {
             "message": "Hello world posted"
           }
     responses: 
       201:
-        body: # declare content of response
-          application/json: # media type
-            type: | # structural definition of a response (schema or type)
+        body:
+          application/json: 
+            type: | 
               {
                 "title": "Hello world post",
                 "type": "object",
@@ -52,7 +52,7 @@ title: Hello world # required title
                   }
                 }
               }
-            example: | # example of how a response looks
+            example: |
               {
                 "message": "Hello world posted"
               }
@@ -60,7 +60,7 @@ title: Hello world # required title
     put:
       body:
         application/json:
-          type: | # structural definition of a response (schema or type)
+          type: | 
             {
               "title": "Hello world put",
               "type": "object",
@@ -70,15 +70,15 @@ title: Hello world # required title
                 }
               }
             }
-          example: | # example of how a response looks
+          example: | 
             {
               "message": "Hello world put"
             }
       responses: 
         200:
-          body: # declare content of response
-            application/json: # media type
-              type: | # structural definition of a response (schema or type)
+          body: 
+            application/json: 
+              type: | 
                 {
                   "title": "Hello world put",
                   "type": "object",
@@ -88,14 +88,14 @@ title: Hello world # required title
                     }
                   }
                 }
-              example: | # example of how a response looks
+              example: |
                 {
                   "message": "Hello world put"
                 }
     patch:
       body:
         application/json:
-          type: | # structural definition of a response (schema or type)
+          type: | 
             {
               "title": "Hello world patch",
               "type": "object",
@@ -105,15 +105,15 @@ title: Hello world # required title
                 }
               }
             }
-          example: | # example of how a response looks
+          example: | 
             {
               "message": "Hello world patch"
             }
       responses: 
         200:
-          body: # declare content of response
-            application/json: # media type
-              type: | # structural definition of a response (schema or type)
+          body: 
+            application/json: 
+              type: | 
                 {
                   "title": "Hello world patch",
                   "type": "object",
@@ -123,7 +123,7 @@ title: Hello world # required title
                     }
                   }
                 }
-              example: | # example of how a response looks
+              example: | 
                 {
                   "message": "Hello world patch"
                 }          
