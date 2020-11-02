@@ -2,7 +2,7 @@ import * as bodyParser from "body-parser";
 import express, { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
 import { startApp } from "./start-app";
-import { MocksType } from "./types";
+import type { MocksType } from "./types";
 
 export const control = async (port: number, config: MocksType) => {
   const app = express();
@@ -13,7 +13,7 @@ export const control = async (port: number, config: MocksType) => {
     const id = uuidv4();
     const transformer = {
       id: id,
-      transform: Function(`"use strict";return (  ${body.transformer } ")"`)(),
+      transform: Function(`"use strict";return (  ${body.transformer} ")"`)(),
       source: body.transformer,
       path: body.path,
       name: body.name,

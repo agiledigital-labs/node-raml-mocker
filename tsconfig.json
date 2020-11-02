@@ -1,5 +1,19 @@
 {
   "compilerOptions": {
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "stripInternal": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "importsNotUsedAsValues": "error",
     "target": "es6",
     "module": "commonjs",
     "moduleResolution": "node",
@@ -10,21 +24,12 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "types": [
-      "node"
-    ],
-    "lib": [
-      "es6"
-    ],
+    "types": ["node", "jest"],
+    "lib": ["es6"],
     "baseUrl": ".",
     "paths": {
-      "*": [
-        "node_modules/*",
-        "app/types/*"
-      ]
+      "*": ["node_modules/*", "app/types/*"]
     }
   },
-  "include": [
-    "app",
-  ]
+  "include": ["app"]
 }

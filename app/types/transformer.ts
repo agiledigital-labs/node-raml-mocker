@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 
 export type Transform = (body: string, req: Request, res: Response) => string;
 
@@ -9,7 +9,6 @@ export type Transformer = {
   transform: Transform;
   source: string;
 };
-
 
 export type MocksType = {
   remove: (id: string) => Array<Transformer>;

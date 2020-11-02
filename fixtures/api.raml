@@ -1,0 +1,134 @@
+#%RAML 1.0
+title: Hello world # required title
+
+/helloworld: # optional resource
+  get: # HTTP method declaration
+    responses: # declare a response
+      200: # HTTP status code
+        body: # declare content of response
+          application/json: # media type
+            type: | # structural definition of a response (schema or type)
+              {
+                "title": "Hello world Response",
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            example: | # example of how a response looks
+              {
+                "message": "Hello world"
+              }
+  post:
+    body:
+      application/json:
+        type: | # structural definition of a response (schema or type)
+          {
+            "title": "Hello world post",
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        example: | # example of how a response looks
+          {
+            "message": "Hello world posted"
+          }
+    responses: 
+      201:
+        body: # declare content of response
+          application/json: # media type
+            type: | # structural definition of a response (schema or type)
+              {
+                "title": "Hello world post",
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            example: | # example of how a response looks
+              {
+                "message": "Hello world posted"
+              }
+  /{id}:
+    put:
+      body:
+        application/json:
+          type: | # structural definition of a response (schema or type)
+            {
+              "title": "Hello world put",
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          example: | # example of how a response looks
+            {
+              "message": "Hello world put"
+            }
+      responses: 
+        200:
+          body: # declare content of response
+            application/json: # media type
+              type: | # structural definition of a response (schema or type)
+                {
+                  "title": "Hello world put",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              example: | # example of how a response looks
+                {
+                  "message": "Hello world put"
+                }
+    patch:
+      body:
+        application/json:
+          type: | # structural definition of a response (schema or type)
+            {
+              "title": "Hello world patch",
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          example: | # example of how a response looks
+            {
+              "message": "Hello world patch"
+            }
+      responses: 
+        200:
+          body: # declare content of response
+            application/json: # media type
+              type: | # structural definition of a response (schema or type)
+                {
+                  "title": "Hello world patch",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              example: | # example of how a response looks
+                {
+                  "message": "Hello world patch"
+                }          
+    delete:
+      responses:
+        204:
+          
+  

@@ -4,7 +4,7 @@ import osprey from "osprey";
 import mockService from "osprey-mock-service";
 import { v4 as uuidv4 } from "uuid";
 import { startApp } from "./start-app";
-import { MocksType, Transformer } from "./types";
+import type { MocksType, Transformer } from "./types";
 import fs from "fs";
 import { WebApiParser } from "webapi-parser";
 
@@ -81,7 +81,7 @@ export const ramlmocker = async (
   app.use(osprey.server(raml, { RAMLVersion: undefined }));
   app.use(mockService(raml));
 
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     startApp(port, app, () => {
       console.log(`RAML mock server running on [${port}].`);
       resolve({

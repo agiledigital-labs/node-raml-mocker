@@ -1,11 +1,10 @@
 import { existsSync } from "fs";
 import { control } from "./control-api";
 import { ramlmocker } from "./ramlmocker";
-import { Transformer } from "./types";
+import type { Transformer } from "./types";
 
-const mockRaml = async () => {
-  const ramlFile =
-    process.env.RAML_API_FILE;
+export const mockRaml = async () => {
+  const ramlFile = process.env.RAML_API_FILE;
 
   const transformersDir = process.env.TRANSFORMERS_DIR;
 
@@ -39,9 +38,11 @@ const mockRaml = async () => {
     []
   );
 
-  const mocks = await ramlmocker(mockPort, ramlFile, transformers).catch((e: unknown) =>
-    console.error(`Error generating mocks: ${e}`)
-  );
+  const mocks = await ramlmocker(
+    mockPort,
+    ramlFile,
+    transformers
+  ).catch((e: unknown) => console.error(`Error generating mocks: ${e}`));
 
   if (!mocks) {
     return;
