@@ -22,7 +22,7 @@ const httpRequest = async <T extends { message: string }>({
 
   const body =
     response.status === 204
-      ? response.statusText
+      ? (await response.buffer()).length.toString()
       : (<T>await response.json()).message;
 
   return { status: response.status, message: body };
@@ -63,10 +63,10 @@ describe("Api tests without transformer", () => {
       method: "head",
     });
 
-    const message = await response.text();
+    const message = (await response.buffer()).length.toString();
 
     expect(response.status).toBe(200);
-    expect(message).toBe("");
+    expect(message).toBe("0");
   });
 
   it("should post helloworld", async () => {
@@ -117,7 +117,7 @@ describe("Api tests without transformer", () => {
     });
 
     expect(status).toBe(204);
-    expect(message).toBe("No Content");
+    expect(message).toBe("0");
   });
 });
 
@@ -143,6 +143,6 @@ describe("Api tests with transformer", () => {
     });
 
     expect(status).toBe(204);
-    expect(message).toBe("No Content");
+    expect(message).toBe("0");
   });
 });
