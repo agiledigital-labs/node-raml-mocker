@@ -5,14 +5,14 @@ import mockService from "osprey-mock-service";
 import { v4 as uuidv4 } from "uuid";
 import { startApp } from "./start-app";
 import type { MocksType, Transformer } from "./types";
-import fs from "fs";
 import { WebApiParser } from "webapi-parser";
+import path from "path";
 
 async function createModel(ramlFile: string) {
-  const ramlString = fs.readFileSync(ramlFile).toString();
+  const inPath = path.join(__dirname, "..", ramlFile);
   const createdModel10 = await WebApiParser.raml10
-    .parse(ramlString)
-    .catch((e: unknown) => console.error(`Error generating mocks: ${e}`));
+    .parse(`file://${inPath}`)
+    .catch((e: unknown) => console.error(`Error from webapi parser: ${e}`));
 
   return createdModel10;
 }
