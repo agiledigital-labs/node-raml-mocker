@@ -39,7 +39,7 @@
     "start": "ts-node app/server.ts",
     "build": "tsc",
     "build-docker": "docker build . -t adelabs/node-raml-mocker:ci-test",
-    "run-docker": "docker run -d -p 5001:5001 -p 5002:5002 -v ${PWD}/fixtures:/home/runner/artifacts/api -v ${PWD}/fixtures/transformers:/home/runner/artifacts/transformers --name e2e-test-docker adelabs/node-raml-mocker:ci-test",
+    "run-docker": "docker run -d -p 5001:5001 -p 5002:5002 -v ${PWD}/fixtures/raml:/home/runner/artifacts/api -v ${PWD}/fixtures/transformers:/home/runner/artifacts/transformers --name e2e-test-docker adelabs/node-raml-mocker:ci-test",
     "stop-docker": "docker stop e2e-test-docker && docker rm e2e-test-docker",
     "e2e-test-local": "yarn build-docker && yarn run-docker && yarn e2e-test && yarn stop-docker",
     "type-coverage": "type-coverage",

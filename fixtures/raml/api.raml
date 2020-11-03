@@ -1,0 +1,48 @@
+#%RAML 1.0
+title: Hello world
+
+/helloworld:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: !include types/response.json
+            example: !include examples/get-response.json
+  post:
+    body:
+      application/json:
+        type: !include types/response.json
+        example: !include examples/post-response.json
+    responses: 
+      201:
+        body:
+          application/json: 
+            type: !include types/response.json
+            example: !include examples/post-response.json
+  /{id}:
+    put:
+      body:
+        application/json:
+          type: !include types/response.json
+          example: !include examples/put-response.json
+      responses: 
+        200:
+          body: 
+            application/json: 
+              type: !include types/response.json
+              example: !include examples/put-response.json
+    patch:
+      body:
+        application/json:
+          type: !include types/response.json
+          example: !include examples/patch-response.json
+      responses: 
+        200:
+          body: 
+            application/json: 
+              type: !include types/response.json
+              example: !include examples/patch-response.json      
+    delete:
+      responses:
+        204:

@@ -20,7 +20,7 @@ jobs:
 
       - name: Start Docker image
         run: |
-          docker run -d -p 5001:5001 -p 5002:5002 -v ${PWD}/fixtures:/home/runner/artifacts/api -v ${PWD}/fixtures/transformers:/home/runner/artifacts/transformers adelabs/node-raml-mocker:ci-test
+          docker run -d -p 5001:5001 -p 5002:5002 -v ${PWD}/fixtures/raml:/home/runner/artifacts/api -v ${PWD}/fixtures/transformers:/home/runner/artifacts/transformers adelabs/node-raml-mocker:ci-test
 
       - name: Install dependencies
         run: yarn install
