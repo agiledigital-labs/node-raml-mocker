@@ -6,16 +6,14 @@ import { v4 as uuidv4 } from "uuid";
 import { startApp } from "./start-app";
 import type { MocksType, Transformer } from "./types";
 import { WebApiParser } from "webapi-parser";
-import path from "path";
 
-async function createModel(ramlFile: string) {
-  const inPath = path.join(__dirname, "..", ramlFile);
+const createModel = async (ramlFile: string) => {
   const createdModel10 = await WebApiParser.raml10
-    .parse(`file://${inPath}`)
+    .parse(`file://${ramlFile}`)
     .catch((e: unknown) => console.error(`Error from webapi parser: ${e}`));
 
   return createdModel10;
-}
+};
 
 export const ramlmocker = async (
   port: number,
