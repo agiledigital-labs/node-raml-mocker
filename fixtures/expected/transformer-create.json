@@ -1,0 +1,4 @@
+{
+  "source": "(body, req, res) => {\nres.statusCode = 418;\nconst json = JSON.parse(body);\njson.message = \"Newly transformed\";\nreturn JSON.stringify(json);\n}",
+  "name": "Test transformer to be deleted"
+}

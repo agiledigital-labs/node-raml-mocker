@@ -19,7 +19,7 @@ export const control = async (port: number, config: MocksType) => {
     const id = uuidv4();
     const transformer = {
       id: id,
-      transform: Function(`"use strict";return (  ${body.transformer} ")"`)(),
+      transform: Function(`"use strict";return (  ${body.transformer} )`)(),
       source: body.transformer,
       path: body.path,
       name: body.name,

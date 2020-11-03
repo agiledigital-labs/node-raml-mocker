@@ -27,9 +27,11 @@
     "types": ["node", "jest"],
     "lib": ["es6"],
     "baseUrl": ".",
+    "resolveJsonModule": true,
     "paths": {
       "*": ["node_modules/*", "app/types/*"]
     }
   },
-  "include": ["app"]
+  "include": ["app"],
+  "exclude": ["app/tests"]
 }
