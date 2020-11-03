@@ -1,9 +1,10 @@
 import fetch from "node-fetch";
-
-type HttpMethod = "post" | "put" | "get" | "patch" | "delete";
-const baseUrl = "http://localhost:5001/helloworld";
-const testId = "test-id-for-raml";
-const transformedTestId = "test-with-transformer";
+import {
+  HttpMethod,
+  baseUrl,
+  testId,
+  transformedTestId,
+} from "../../fixtures/utils/test-utils";
 
 const contentBody = (method: HttpMethod) =>
   JSON.stringify({ message: `Hello world ${method}` });
@@ -35,6 +36,7 @@ const httpRequest = async <T extends { message: string }>({
 
 describe("Api tests without transformer", () => {
   it("should get helloworld", async () => {
+    expect.assertions(2);
     const { status, message } = await httpRequest({ method: "get" });
 
     expect(status).toBe(200);
@@ -42,28 +44,39 @@ describe("Api tests without transformer", () => {
   });
 
   it("should get options for /helloworld", async () => {
+    const testMethods = ["GET", "HEAD", "POST"];
+    expect.assertions(1 + testMethods.length);
+
     const response = await fetch(baseUrl, {
       method: "options",
     });
 
-    const message = await response.text();
-
     expect(response.status).toBe(200);
-    expect(message).toBe("GET, HEAD, POST");
+    testMethods.forEach((value) =>
+      expect(response.headers.get("Allow")).toEqual(
+        expect.stringContaining(value)
+      )
+    );
   });
 
   it("should get options for /helloworld/{id}", async () => {
+    const testMethods = ["DELETE, PATCH, PUT"];
+    expect.assertions(1 + testMethods.length);
+
     const response = await fetch(`${baseUrl}/${testId}`, {
       method: "options",
     });
 
-    const message = await response.text();
-
     expect(response.status).toBe(200);
-    expect(message).toBe("DELETE, PATCH, PUT");
+    testMethods.forEach((value) =>
+      expect(response.headers.get("Allow")).toEqual(
+        expect.stringContaining(value)
+      )
+    );
   });
 
   it("should be able to call head method for /helloworld and not get any content back", async () => {
+    expect.assertions(2);
     const response = await fetch(baseUrl, {
       method: "head",
     });
@@ -75,6 +88,7 @@ describe("Api tests without transformer", () => {
   });
 
   it("should post helloworld", async () => {
+    expect.assertions(2);
     const { status, message } = await httpRequest({
       method: "post",
       content: contentBody("post"),
@@ -85,6 +99,7 @@ describe("Api tests without transformer", () => {
   });
 
   it("should put helloworld", async () => {
+    expect.assertions(2);
     const { status, message } = await httpRequest({
       method: "put",
       request: `${baseUrl}/${testId}`,
@@ -96,6 +111,7 @@ describe("Api tests without transformer", () => {
   });
 
   it("should patch helloworld", async () => {
+    expect.assertions(2);
     const { status, message } = await httpRequest({
       method: "patch",
       request: `${baseUrl}/${testId}`,
@@ -107,6 +123,7 @@ describe("Api tests without transformer", () => {
   });
 
   it("should delete helloworld", async () => {
+    expect.assertions(2);
     const { status, message } = await httpRequest({
       method: "delete",
       request: `${baseUrl}/${testId}`,
@@ -119,6 +136,7 @@ describe("Api tests without transformer", () => {
 
 describe("Api tests with transformer", () => {
   it("should put helloworld with transformer id and get transformed result", async () => {
+    expect.assertions(2);
     const { status, message } = await httpRequest({
       method: "put",
       request: `${baseUrl}/${transformedTestId}`,
@@ -130,6 +148,7 @@ describe("Api tests with transformer", () => {
   });
 
   it("should not be able to transform response message and status code for a 204 response", async () => {
+    expect.assertions(2);
     const { status, message } = await httpRequest({
       method: "delete",
       request: `${baseUrl}/${transformedTestId}`,

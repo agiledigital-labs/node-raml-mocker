@@ -1,8 +1,7 @@
 import fetch from "node-fetch";
 import * as transformerCreateExpected from "../../fixtures/expected/transformer-create.json";
 import * as transformerGetExpected from "../../fixtures/expected/transformer-get.json";
-const tansformerBaseUrl = "http://localhost:5002/v1/api/transformers";
-const ramlBaseUrl = "http://localhost:5001/helloworld";
+import { tansformerBaseUrl, baseUrl } from "../../fixtures/utils/test-utils";
 
 describe("Transformer API tests", () => {
   it("should create a transformer", async () => {
@@ -57,7 +56,7 @@ describe("Transformer API tests", () => {
 
   it("should get the transformed message with transformed status code and message", async () => {
     expect.assertions(2);
-    const response = await fetch(ramlBaseUrl, {
+    const response = await fetch(baseUrl, {
       method: "get",
     });
 
@@ -97,7 +96,7 @@ describe("Transformer API tests", () => {
 
   it("should not get the transformed message with transformed status code and message after transformer is deleted", async () => {
     expect.assertions(2);
-    const response = await fetch(ramlBaseUrl, {
+    const response = await fetch(baseUrl, {
       method: "get",
     });
 
