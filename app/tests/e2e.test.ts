@@ -36,6 +36,39 @@ describe("Api tests without transformer", () => {
     expect(message).toBe("Hello world");
   });
 
+  it("should get options for /helloworld", async () => {
+    const response = await fetch(baseUrl, {
+      method: "options",
+    });
+
+    const message = await response.text();
+
+    expect(response.status).toBe(200);
+    expect(message).toBe("GET, HEAD, POST");
+  });
+
+  it("should get options for /helloworld/{id}", async () => {
+    const response = await fetch(`${baseUrl}/${testId}`, {
+      method: "options",
+    });
+
+    const message = await response.text();
+
+    expect(response.status).toBe(200);
+    expect(message).toBe("DELETE, PATCH, PUT");
+  });
+
+  it("should be able to call head method for /helloworld and not get any content back", async () => {
+    const response = await fetch(baseUrl, {
+      method: "head",
+    });
+
+    const message = await response.text();
+
+    expect(response.status).toBe(200);
+    expect(message).toBe("");
+  });
+
   it("should post helloworld", async () => {
     const content = {
       message: "Hello world posted",
