@@ -1,14 +1,19 @@
 import fetch from "node-fetch";
+
+type HttpMethod = "post" | "put" | "get" | "patch" | "delete";
 const baseUrl = "http://localhost:5001/helloworld";
 const testId = "test-id-for-raml";
 const transformedTestId = "test-with-transformer";
+
+const contentBody = (method: HttpMethod) =>
+  JSON.stringify({ message: `Hello world ${method}` });
 
 const httpRequest = async <T extends { message: string }>({
   method,
   content,
   request = baseUrl,
 }: {
-  method: "post" | "put" | "get" | "patch" | "delete";
+  method: HttpMethod;
   content?: string;
   request?: string;
 }): Promise<{ status: number; message?: T["message"] }> => {
@@ -70,12 +75,9 @@ describe("Api tests without transformer", () => {
   });
 
   it("should post helloworld", async () => {
-    const content = {
-      message: "Hello world posted",
-    };
     const { status, message } = await httpRequest({
       method: "post",
-      content: JSON.stringify(content),
+      content: contentBody("post"),
     });
 
     expect(status).toBe(201);
@@ -83,13 +85,10 @@ describe("Api tests without transformer", () => {
   });
 
   it("should put helloworld", async () => {
-    const content = {
-      message: "Hello world put",
-    };
     const { status, message } = await httpRequest({
       method: "put",
       request: `${baseUrl}/${testId}`,
-      content: JSON.stringify(content),
+      content: contentBody("put"),
     });
 
     expect(status).toBe(200);
@@ -97,13 +96,10 @@ describe("Api tests without transformer", () => {
   });
 
   it("should patch helloworld", async () => {
-    const content = {
-      message: "Hello world patch",
-    };
     const { status, message } = await httpRequest({
       method: "patch",
       request: `${baseUrl}/${testId}`,
-      content: JSON.stringify(content),
+      content: contentBody("patch"),
     });
 
     expect(status).toBe(200);
@@ -123,13 +119,10 @@ describe("Api tests without transformer", () => {
 
 describe("Api tests with transformer", () => {
   it("should put helloworld with transformer id and get transformed result", async () => {
-    const content = {
-      message: "Hello world put",
-    };
     const { status, message } = await httpRequest({
       method: "put",
       request: `${baseUrl}/${transformedTestId}`,
-      content: JSON.stringify(content),
+      content: contentBody("put"),
     });
 
     expect(status).toBe(418);
