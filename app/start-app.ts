@@ -6,6 +6,13 @@ const tlsPublicCertificatePath = process.env.TLS_PUBLIC_CERTIFICATE_PATH;
 const tlsPrivateKeyPath = process.env.TLS_PRIVATE_KEY_PATH;
 const tlsRootCaCertificatePath = process.env.TLS_CA_CERTIFICATE_PATH;
 
+/**
+ * To start the app securely if security related files are defined.
+ * If not start it without any additional security settings.
+ * @param port port through which the app would run
+ * @param app the application to run
+ * @param callback to be executed on callback
+ */
 export const startApp = (
   port: number,
   app: RequestListener | undefined,

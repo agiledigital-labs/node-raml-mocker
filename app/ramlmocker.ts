@@ -15,6 +15,12 @@ const createModel = async (ramlFile: string) => {
   return createdModel10;
 };
 
+/**
+ * To mock supplied raml after transformation
+ * @param port port number for the api controller to run
+ * @param ramlFile the path to the ramlFile from root
+ * @param transformers supplied transformers
+ */
 export const ramlmocker = async (
   port: number,
   ramlFile: string,

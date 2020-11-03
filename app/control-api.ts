@@ -4,6 +4,12 @@ import { v4 as uuidv4 } from "uuid";
 import { startApp } from "./start-app";
 import type { MocksType } from "./types";
 
+/**
+ * Control to add, remove, get or list transformers while the application is running.
+ * This allows to dynamically interact with transformers.
+ * @param port port number using which the transformer controller runs
+ * @param config collection of functions to be performed on transformers
+ */
 export const control = async (port: number, config: MocksType) => {
   const app = express();
 

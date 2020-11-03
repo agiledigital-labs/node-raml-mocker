@@ -3,6 +3,10 @@ import { control } from "./control-api";
 import { ramlmocker } from "./ramlmocker";
 import type { Transformer } from "./types";
 
+/**
+ * Entrypoint function for the application.
+ * This does initial argument checks and calls functions to mock the raml and start transformer management API.
+ */
 export const mockRaml = async () => {
   const ramlFile = process.env.RAML_API_FILE;
 
