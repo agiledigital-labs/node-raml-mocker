@@ -3,16 +3,20 @@ import * as transformerCreateExpected from "../../fixtures/expected/transformer-
 import * as transformerGetExpected from "../../fixtures/expected/transformer-get.json";
 import { tansformerBaseUrl, baseUrl } from "../../fixtures/utils/test-utils";
 
+const testTransformer = "Test transformer to be deleted";
+
 describe("Transformer API tests", () => {
   it("should create a transformer", async () => {
     expect.assertions(3);
+
+    // When a new transformer is posted
     const response = await fetch(tansformerBaseUrl, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: "Test transformer to be deleted",
+        name: testTransformer,
         transformer: `(body, req, res) => {
               res.statusCode = 418;
               const json = JSON.parse(body);
@@ -24,6 +28,7 @@ describe("Transformer API tests", () => {
 
     const message = await response.json();
 
+    // Then expect the newly posted transformer to be returned with a status code of 201
     expect(response.status).toBe(201);
     expect(message.name).toBe(transformerCreateExpected.name);
     expect(message.source.replace(/\s/g, "")).toBe(
@@ -33,6 +38,8 @@ describe("Transformer API tests", () => {
 
   it("should get the transformers", async () => {
     expect.assertions(5);
+
+    // When transformers are requested
     const response = await fetch(tansformerBaseUrl, {
       method: "get",
     });
@@ -45,6 +52,7 @@ describe("Transformer API tests", () => {
      */
     const expectedLength = Object.keys(transformerGetExpected).length - 1;
 
+    // Then expect all transformers to be returned
     expect(message.length).toBe(expectedLength);
     expect(message[0].name).toBe(transformerGetExpected[0].name);
     expect(message[1].name).toBe(transformerGetExpected[1].name);
@@ -54,36 +62,49 @@ describe("Transformer API tests", () => {
     expect(response.status).toBe(200);
   });
 
-  it("should get the transformed message with transformed status code and message", async () => {
+  it("should get the transformed message with transformed status code", async () => {
     expect.assertions(2);
+
+    // When a get request is sent after creating a new transformer
     const response = await fetch(baseUrl, {
       method: "get",
     });
 
     const message = await response.json();
+
+    // Then expect the new transformer to modify the message and status code
     expect(response.status).toBe(418);
     expect(message).toEqual({ message: "Newly transformed" });
   });
 
   it("should get a transformer by id and delete it", async () => {
-    expect.assertions(3);
+    expect.assertions(4);
+
+    // Given there are existing transformers
     const response = await fetch(tansformerBaseUrl, {
       method: "get",
     });
 
     expect(response.status).toBe(200);
 
+    // Get the id of the transformer to be deleted
     const message = await response.json();
     const toDeleteId = message.filter(
-      (element: any) => element.name === "Test transformer to be deleted"
+      (element: any) => element.name === testTransformer
     )[0].id;
 
+    // When the transformer to be deleted is requested by id
     const responseById = await fetch(`${tansformerBaseUrl}/${toDeleteId}`, {
       method: "get",
     });
 
-    expect(responseById.status).toBe(200);
+    const responseByIdMessage = await responseById.json();
 
+    // Then expect the response to return with our selected transformer
+    expect(responseById.status).toBe(200);
+    expect(responseByIdMessage.name).toBe(testTransformer);
+
+    // When the transformer is deleted
     const responseAfterDelete = await fetch(
       `${tansformerBaseUrl}/${toDeleteId}`,
       {
@@ -91,15 +112,19 @@ describe("Transformer API tests", () => {
       }
     );
 
+    // Then expect a 204 resposne
     expect(responseAfterDelete.status).toBe(204);
   });
 
-  it("should not get the transformed message with transformed status code and message after transformer is deleted", async () => {
+  it("should not get the transformed message with transformed status code after transformer is deleted", async () => {
     expect.assertions(2);
+
+    // When hello world is requested
     const response = await fetch(baseUrl, {
       method: "get",
     });
 
+    // Then expect the reponse to not be transformed
     const message = await response.json();
     expect(response.status).toBe(200);
     expect(message).toEqual({ message: "Hello world" });
