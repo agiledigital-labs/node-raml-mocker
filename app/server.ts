@@ -1,11 +1,14 @@
 import { existsSync } from "fs";
 import { control } from "./control-api";
 import { ramlmocker } from "./ramlmocker";
-import { Transformer } from "./types";
+import type { Transformer } from "./types";
 
-const mockRaml = async () => {
-  const ramlFile =
-    process.env.RAML_API_FILE;
+/**
+ * Entrypoint function for the application.
+ * This does initial argument checks and calls functions to mock the raml and start transformer management API.
+ */
+export const mockRaml = async () => {
+  const ramlFile = process.env.RAML_API_FILE;
 
   const transformersDir = process.env.TRANSFORMERS_DIR;
 
@@ -39,15 +42,19 @@ const mockRaml = async () => {
     []
   );
 
-  const mocks = await ramlmocker(mockPort, ramlFile, transformers).catch((e: unknown) =>
-    console.error(`Error generating mocks: ${e}`)
-  );
+  const mocks = await ramlmocker(
+    mockPort,
+    ramlFile,
+    transformers
+  ).catch((e: unknown) => console.error(`Error generating mocks: ${e}`));
 
   if (!mocks) {
     return;
   }
 
-  await control(controlPort, mocks);
+  await control(controlPort, mocks).catch((e: unknown) =>
+    console.error(`Error generating mocks: ${e}`)
+  );
 
   console.log("Configured transformers:");
   if (mocks.list().length === 0) {
@@ -62,4 +69,4 @@ const mockRaml = async () => {
     );
 };
 
-mockRaml();
+mockRaml().catch((e: unknown) => console.error(`Error generating mocks: ${e}`));

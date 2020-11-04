@@ -2,11 +2,25 @@ import express, { Request, Response } from "express";
 import { write } from "express-mung";
 import osprey from "osprey";
 import mockService from "osprey-mock-service";
-import { loadRAML } from "raml-1-parser";
 import { v4 as uuidv4 } from "uuid";
 import { startApp } from "./start-app";
-import { MocksType, Transformer } from "./types";
+import type { MocksType, Transformer } from "./types";
+import { WebApiParser } from "webapi-parser";
 
+const createModel = async (ramlFile: string) => {
+  const createdModel10 = await WebApiParser.raml10
+    .parse(`file://${ramlFile}`)
+    .catch((e: unknown) => console.error(`Error from webapi parser: ${e}`));
+
+  return createdModel10;
+};
+
+/**
+ * To mock supplied raml after transformation
+ * @param port port number for the api controller to run
+ * @param ramlFile the path to the ramlFile from root
+ * @param transformers supplied transformers
+ */
 export const ramlmocker = async (
   port: number,
   ramlFile: string,
@@ -64,19 +78,14 @@ export const ramlmocker = async (
     )
   );
 
-  const ramlApi = await loadRAML(ramlFile, [], {
-    rejectOnErrors: true,
-  });
-
-  // @ts-ignore
-  const raml = ramlApi.expand(true).toJSON({
-    serializeMetadata: false,
-  });
+  const raml = await createModel(ramlFile).catch((e: unknown) =>
+    console.error(`Error generating mocks: ${e}`)
+  );
 
   app.use(osprey.server(raml, { RAMLVersion: undefined }));
   app.use(mockService(raml));
 
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve, _reject) => {
     startApp(port, app, () => {
       console.log(`RAML mock server running on [${port}].`);
       resolve({

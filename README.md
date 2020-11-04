@@ -34,11 +34,14 @@ curl http://localhost:5001/[YOUR RAML PATH HERE]
 
 Expect to receive an example-based response.
 
+Run e2e tests locally  
+`yarn e2e-test-local`
+
 ## Adding transformers
 
 ### During start-up
 
-Transformers can be configured by setting the `TRANSFORMERS_DIR` environment variable. At startup, the mock server will process the modules in those directories and add any transformers.
+Transformers can be configured by setting the `TRANSFORMERS_DIR` environment variable. The transformer path needs to be absolute. At startup, the mock server will process the modules in those directories and add any transformers.
 
 For example:
 
@@ -52,8 +55,8 @@ exports.transformers = [
       const user = req.headers["on-behalf-of-customer-id"];
       json.inspectedBy = user;
       return JSON.stringify(json);
-    }
-  }
+    },
+  },
 ];
 ```
 
@@ -206,6 +209,7 @@ spec:
             secretName: tls-private-key
 
 ```
+
 ## TLS
 
 To enable TLS/HTTPS, specify the following environment variables:

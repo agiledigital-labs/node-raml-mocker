@@ -1,0 +1,9 @@
+{
+  "title": "Hello world Response",
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string"
+    }
+  }
+}
