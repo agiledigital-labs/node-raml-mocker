@@ -26,12 +26,12 @@ describe("Transformer API tests", () => {
       }),
     });
 
-    const message = await response.json();
+    const responseBody = await response.json();
 
     // Then expect the newly posted transformer to be returned with a status code of 201
     expect(response.status).toBe(201);
-    expect(message.name).toBe(transformerCreateExpected.name);
-    expect(message.source.replace(/\s/g, "")).toBe(
+    expect(responseBody.name).toBe(transformerCreateExpected.name);
+    expect(responseBody.source.replace(/\s/g, "")).toBe(
       transformerCreateExpected.source.replace(/\s/g, "")
     );
   });
@@ -44,7 +44,7 @@ describe("Transformer API tests", () => {
       method: "get",
     });
 
-    const message = await response.json();
+    const responseBody = await response.json();
     /**
      * .length call does not work on imported json modules.
      * Imported modules a key for each member of the array, and a default key.
@@ -53,10 +53,10 @@ describe("Transformer API tests", () => {
     const expectedLength = Object.keys(transformerGetExpected).length - 1;
 
     // Then expect all transformers to be returned
-    expect(message.length).toBe(expectedLength);
-    expect(message[0].name).toBe(transformerGetExpected[0].name);
-    expect(message[1].name).toBe(transformerGetExpected[1].name);
-    expect(message[1].source.replace(/\s/g, "")).toBe(
+    expect(responseBody.length).toBe(expectedLength);
+    expect(responseBody[0].name).toBe(transformerGetExpected[0].name);
+    expect(responseBody[1].name).toBe(transformerGetExpected[1].name);
+    expect(responseBody[1].source.replace(/\s/g, "")).toBe(
       transformerGetExpected[1].source.replace(/\s/g, "")
     );
     expect(response.status).toBe(200);
@@ -70,11 +70,11 @@ describe("Transformer API tests", () => {
       method: "get",
     });
 
-    const message = await response.json();
+    const responseBody = await response.json();
 
     // Then expect the new transformer to modify the message and status code
     expect(response.status).toBe(418);
-    expect(message).toEqual({ message: "Newly transformed" });
+    expect(responseBody).toEqual({ message: "Newly transformed" });
   });
 
   it("should get a transformer by id and delete it", async () => {
@@ -88,9 +88,10 @@ describe("Transformer API tests", () => {
     expect(response.status).toBe(200);
 
     // Get the id of the transformer to be deleted
-    const message = await response.json();
-    const toDeleteId = message.filter(
-      (element: any) => element.name === testTransformer
+    const responseBody = await response.json();
+    const toDeleteId = responseBody.filter(
+      (element: { id: string; name: string; source: string }) =>
+        element.name === testTransformer
     )[0].id;
 
     // When the transformer to be deleted is requested by id
@@ -125,8 +126,8 @@ describe("Transformer API tests", () => {
     });
 
     // Then expect the reponse to not be transformed
-    const message = await response.json();
+    const responseBody = await response.json();
     expect(response.status).toBe(200);
-    expect(message).toEqual({ message: "Hello world" });
+    expect(responseBody).toEqual({ message: "Hello world" });
   });
 });
