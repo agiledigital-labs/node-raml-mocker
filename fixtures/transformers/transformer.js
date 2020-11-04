@@ -1,3 +1,5 @@
+exports.transformedTestId = "test-with-transformer";
+
 exports.transformers = [
   {
     name: "Test transformations with transfromer test id",

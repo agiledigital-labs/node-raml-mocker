@@ -37,8 +37,11 @@ const httpRequest = async <T extends { message: string }>({
 describe("Api tests without transformer", () => {
   it("should get helloworld", async () => {
     expect.assertions(2);
+
+    // When the mocked endpoint is sent a get request
     const { status, message } = await httpRequest({ method: "get" });
 
+    // Then get the message with 200 status code
     expect(status).toBe(200);
     expect(message).toBe("Hello world");
   });
@@ -47,10 +50,12 @@ describe("Api tests without transformer", () => {
     const testMethods = ["GET", "HEAD", "POST"];
     expect.assertions(1 + testMethods.length);
 
+    // When the mocked endpoint is asked for options
     const response = await fetch(baseUrl, {
       method: "options",
     });
 
+    // Then expect the options in allow header
     expect(response.status).toBe(200);
     testMethods.forEach((value) =>
       expect(response.headers.get("Allow")).toEqual(
@@ -63,10 +68,12 @@ describe("Api tests without transformer", () => {
     const testMethods = ["DELETE, PATCH, PUT"];
     expect.assertions(1 + testMethods.length);
 
+    // When the mocked endpoint is asked for options
     const response = await fetch(`${baseUrl}/${testId}`, {
       method: "options",
     });
 
+    // When the mocked endpoint is asked for options
     expect(response.status).toBe(200);
     testMethods.forEach((value) =>
       expect(response.headers.get("Allow")).toEqual(
