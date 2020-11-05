@@ -17,7 +17,7 @@ COPY app/ /home/runner/app/
 
 RUN yarn build
 
-FROM node:15
+FROM node:15-alpine
 
 ENV HOME /home/runner
 ENV RUNNER_USER runner
