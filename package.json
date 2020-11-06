@@ -33,7 +33,7 @@
     "type-coverage": "^2.14.0"
   },
   "engines": {
-    "node": ">=10.18.0"
+    "node": ">=15"
   },
   "scripts": {
     "start": "ts-node app/server.ts",
