@@ -6,6 +6,8 @@
 
 [![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fagiledigital-labs%2Fnode-raml-mocker%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/agiledigital-labs/node-raml-mocker/master)
 
+[![codecov](https://codecov.io/gh/agiledigital-labs/node-raml-mocker/branch/master/graph/badge.svg?token=FUF0N4GLUA)](https://codecov.io/gh/agiledigital-labs/node-raml-mocker)
+
 ## Running
 
 Set the following environment variables:
