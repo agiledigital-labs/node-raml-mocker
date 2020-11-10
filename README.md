@@ -1,12 +1,6 @@
 # RAML first mock server
 
-[![Type Coverage](https://img.shields.io/badge/dynamic/json.svg?label=type-coverage&prefix=%E2%89%A5&suffix=%&query=$.typeCoverage.atLeast&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fagiledigital-labs%2Fnode-raml-mocker%2Fmaster%2Fpackage.json)](https://github.com/plantain-00/type-coverage)
-
-[![Build Status](https://github.com/agiledigital-labs/node-raml-mocker/workflows/e2e_tests/badge.svg)](https://github.com/agiledigital-labs/node-raml-mocker/actions)
-
-[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fagiledigital-labs%2Fnode-raml-mocker%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/agiledigital-labs/node-raml-mocker/master)
-
-[![codecov](https://codecov.io/gh/agiledigital-labs/node-raml-mocker/branch/master/graph/badge.svg?token=FUF0N4GLUA)](https://codecov.io/gh/agiledigital-labs/node-raml-mocker)
+[![Type Coverage](https://img.shields.io/badge/dynamic/json.svg?label=type-coverage&prefix=%E2%89%A5&suffix=%&query=$.typeCoverage.atLeast&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fagiledigital-labs%2Fnode-raml-mocker%2Fmaster%2Fpackage.json)](https://github.com/plantain-00/type-coverage) [![Build Status](https://github.com/agiledigital-labs/node-raml-mocker/workflows/e2e_tests/badge.svg)](https://github.com/agiledigital-labs/node-raml-mocker/actions) [![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fagiledigital-labs%2Fnode-raml-mocker%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/agiledigital-labs/node-raml-mocker/feature/add-badges-to-readme) [![codecov](https://codecov.io/gh/agiledigital-labs/node-raml-mocker/branch/feature/add-badges-to-readme/graph/badge.svg?token=FUF0N4GLUA)](https://codecov.io/gh/agiledigital-labs/node-raml-mocker)
 
 ## Running
 
