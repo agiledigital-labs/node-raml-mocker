@@ -51,7 +51,7 @@
     "detail": true
   },
   "author": "dxspasojevic",
-  "license": "GNU",
+  "license": "GPL-3.0-or-later",
   "release": {
     "branches": [
       "master"
