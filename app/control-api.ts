@@ -41,7 +41,13 @@ export const control = async (port: number, config: MocksType) => {
     res.status(204).end();
   });
 
-  return new Promise((resolve, _reject) => {
+  /**
+   * Optionality for promise resolve callback has been removed.
+   * resolve() can still be called without an argument if type void is specified when creating new promise.
+   * For more information, see https://github.com/microsoft/TypeScript/pull/39817
+   * This change was made to resolve updating @types/express to 4.17.9.
+   */
+  return new Promise<void>((resolve, _reject) => {
     startApp(port, app, () => {
       console.log(`api mock server running on [${port}].`);
       resolve();
