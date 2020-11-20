@@ -47,7 +47,7 @@ export const control = async (port: number, config: MocksType) => {
    * For more information, see https://github.com/microsoft/TypeScript/pull/39817
    * This change was made to resolve updating @types/express to 4.17.9.
    */
-  return new Promise<void>((resolve, _reject) => {
+  await new Promise<void>((resolve, _reject) => {
     startApp(port, app, () => {
       console.log(`api mock server running on [${port}].`);
       resolve();
