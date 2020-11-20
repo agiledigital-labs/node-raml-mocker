@@ -7596,7 +7596,7 @@ type-coverage-core@^2.14.3:
     tslib "1 || 2"
     tsutils "3"
 
-type-coverage@^2.14.0:
+type-coverage@^2.14.3:
   version "2.14.3"
   resolved "https://registry.yarnpkg.com/type-coverage/-/type-coverage-2.14.3.tgz#4456092f09589ec40777e5d1ce95c6d73a578a23"
   integrity sha512-CyEDx5rYMtiW416vBtlKBAsQgQCPbMqhCyvQDztjRJKOvTwPt6TebuhdRSkUMghC/4oiaxIuLnvWg2ZBSBJlwA==
