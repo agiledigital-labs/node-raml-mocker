@@ -30,7 +30,7 @@
     "semantic-release": "^17.3.0",
     "semantic-release-docker": "^2.2.0",
     "ts-jest": "26.4.4",
-    "type-coverage": "^2.14.6"
+    "type-coverage": "^2.14.7"
   },
   "engines": {
     "node": ">=15"
