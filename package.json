@@ -4,7 +4,7 @@
   "description": "RAML-first mocking tool",
   "main": "app/server.ts",
   "dependencies": {
-    "@types/node-fetch": "^2.5.7",
+    "@types/node-fetch": "^2.5.8",
     "body-parser": "^1.18.3",
     "express": "~4.17.1",
     "express-mung": "^0.5.1",
