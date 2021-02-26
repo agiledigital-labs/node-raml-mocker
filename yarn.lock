@@ -4879,10 +4879,10 @@ marked-terminal@^4.0.0:
     node-emoji "^1.10.0"
     supports-hyperlinks "^2.1.0"
 
-marked@^1.0.0:
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/marked/-/marked-1.2.5.tgz#a44b31f2a0b8b5bfd610f00d55d1952d1ac1dfdb"
-  integrity sha512-2AlqgYnVPOc9WDyWu7S5DJaEZsfk6dNh/neatQ3IHUW4QLutM/VPSH9lG7bif+XjFWc9K9XR3QvR+fXuECmfdA==
+marked@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-2.0.0.tgz#9662bbcb77ebbded0662a7be66ff929a8611cee5"
+  integrity sha512-NqRSh2+LlN2NInpqTQnS614Y/3NkVMFFU6sJlRFEpxJ/LHuK/qJECH7/fXZjk4VZstPW/Pevjil/VtSONsLc7Q==
 
 meant@^1.0.2:
   version "1.0.3"
@@ -6707,10 +6707,10 @@ semantic-release-docker@^2.2.0:
     "@semantic-release/error" "^2.1.0"
     execa "^0.10.0"
 
-semantic-release@^17.3.6:
-  version "17.3.6"
-  resolved "https://registry.yarnpkg.com/semantic-release/-/semantic-release-17.3.6.tgz#0390eb9c4d13e82dbf0f8e5700f196b599fa2a12"
-  integrity sha512-zPAFxmnMtEVbN1Lzxz+CMXlt5a9txB/PRWaVq+oAC9Mppbax/vWXZ0kisHX92O+BjEBbsaFtISjz82E+2Ro9gQ==
+semantic-release@^17.3.9:
+  version "17.3.9"
+  resolved "https://registry.yarnpkg.com/semantic-release/-/semantic-release-17.3.9.tgz#99ebe7ef7c6b79b3bfb44baeaf242c6fc6a31f09"
+  integrity sha512-iPDySFcAXG+7KiM0JH4bvF++imkf85VmfXpIBPAyDxK/P4+pe19KNFCfkzTKwUJkTIAyLUIr7WOg3W5h5aMwNg==
   dependencies:
     "@semantic-release/commit-analyzer" "^8.0.0"
     "@semantic-release/error" "^2.2.0"
@@ -6724,12 +6724,12 @@ semantic-release@^17.3.6:
     execa "^5.0.0"
     figures "^3.0.0"
     find-versions "^4.0.0"
-    get-stream "^5.0.0"
+    get-stream "^6.0.0"
     git-log-parser "^1.2.0"
     hook-std "^2.0.0"
     hosted-git-info "^3.0.0"
     lodash "^4.17.15"
-    marked "^1.0.0"
+    marked "^2.0.0"
     marked-terminal "^4.0.0"
     micromatch "^4.0.2"
     p-each-series "^2.1.0"
@@ -7533,14 +7533,6 @@ ts-jest@26.5.1:
     semver "7.x"
     yargs-parser "20.x"
 
-ts-lib-utils@^2.14.8:
-  version "2.14.8"
-  resolved "https://registry.yarnpkg.com/ts-lib-utils/-/ts-lib-utils-2.14.8.tgz#23c153cf846e41d1ec4d83823033ce2f5d9ab33b"
-  integrity sha512-Yy+3zvKVOdCPUVgPPRXig9BBygFdvDUggoq2JH/jlUu3GSuBWKWf3awDq76L6cMqOD1sUOzME2Zq2/Vy0l7xLQ==
-  dependencies:
-    glob "7"
-    tslib "1 || 2"
-
 ts-node@^9.1.1:
   version "9.1.1"
   resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-9.1.1.tgz#51a9a450a3e959401bda5f004a72d54b936d376d"
@@ -7594,23 +7586,23 @@ type-check@~0.3.2:
   dependencies:
     prelude-ls "~1.1.2"
 
-type-coverage-core@^2.14.9:
-  version "2.14.9"
-  resolved "https://registry.yarnpkg.com/type-coverage-core/-/type-coverage-core-2.14.9.tgz#0be4eaf962a72210edb0098360b4eb9c206a8538"
-  integrity sha512-+DegReRzFMFf+6D6D1fC/c7ZG5Jz/X4+nlkPoTEz9hbP6O71U0UXtyHXyauvGhZH7zgomLGGVn+ByL8TBbvU8A==
+type-coverage-core@^2.16.2:
+  version "2.16.2"
+  resolved "https://registry.yarnpkg.com/type-coverage-core/-/type-coverage-core-2.16.2.tgz#1ec0a1f9002eec2c02ab42aab9f0acd3a07e49ae"
+  integrity sha512-Cs2UlM4fkhtN57nLBVVmR5clC3H4d9mlj1VzE2VvGpO49wgj4is3SWf1UuiLL4Tv8iaq9E0h2kSxCijHBvjCig==
   dependencies:
+    glob "7"
     minimatch "3"
-    ts-lib-utils "^2.14.8"
     tslib "1 || 2"
     tsutils "3"
 
-type-coverage@^2.14.9:
-  version "2.14.9"
-  resolved "https://registry.yarnpkg.com/type-coverage/-/type-coverage-2.14.9.tgz#77a723d7c46d2a5986967ee50e24424c3630644a"
-  integrity sha512-D/IJnYD/9ObE+BJhlVnZ6rUx+y+Y1g1wZXE83jMmz8IxoRsXIs5KblKCZN42n0Npjn6MQVrUtR2regWWl/fxNA==
+type-coverage@^2.16.2:
+  version "2.16.2"
+  resolved "https://registry.yarnpkg.com/type-coverage/-/type-coverage-2.16.2.tgz#66d8b6ba18a9f9ae330a93252e0eb6f771c13ba6"
+  integrity sha512-7dsOFuuobxR1eNAUvXcde6KpxHRoTdns7D7dl6O1cEO1QTODkvt6pUafvBhKqPiCHOJzEQqgPxji2Ukeli3RDg==
   dependencies:
     minimist "1"
-    type-coverage-core "^2.14.9"
+    type-coverage-core "^2.16.2"
 
 type-detect@4.0.8:
   version "4.0.8"
@@ -7662,10 +7654,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^4.1.5:
-  version "4.1.5"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.1.5.tgz#123a3b214aaff3be32926f0d8f1f6e704eb89a72"
-  integrity sha512-6OSu9PTIzmn9TCDiovULTnET6BgXtDYL4Gg4szY+cGsc3JP1dQL8qvE8kShTRx1NIw4Q9IBHlwODjkjWEtMUyA==
+typescript@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.2.2.tgz#1450f020618f872db0ea17317d16d8da8ddb8c4c"
+  integrity sha512-tbb+NVrLfnsJy3M59lsDgrzWIflR4d4TIUjz+heUnHZwdF7YsrMTKoRERiIvI2lvBG95dfpLxB21WZhys1bgaQ==
 
 uglify-js@^3.1.4:
   version "3.11.6"
