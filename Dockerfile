@@ -1,4 +1,4 @@
-FROM node:15 As Builder
+FROM node:18 As Builder
 
 LABEL maintainer="Agile Digital <info@agiledigital.com.au>"
 LABEL description="Docker image that supports a customisable, RAML mock"
@@ -17,7 +17,7 @@ COPY app/ /home/runner/app/
 
 RUN yarn build
 
-FROM node:16-alpine
+FROM node:18
 
 ENV HOME /home/runner
 ENV RUNNER_USER runner
